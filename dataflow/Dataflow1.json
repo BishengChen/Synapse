@@ -1,0 +1,112 @@
+{
+	"name": "Dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "az_adls_AzureSynapseWorkshop_InternetSales",
+						"type": "DatasetReference"
+					},
+					"name": "InternetSales"
+				},
+				{
+					"dataset": {
+						"referenceName": "az_adls_AzureSynapseWorkshop_InternetSales",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Parquet1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "AggByCategory"
+				},
+				{
+					"name": "aggregate1"
+				},
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "rank1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          dataType as string,",
+				"          dataSubtype as string,",
+				"          dateTime as timestamp,",
+				"          category as string,",
+				"          subcategory as string,",
+				"          status as string,",
+				"          address as string,",
+				"          latitude as double,",
+				"          longitude as double,",
+				"          source as string,",
+				"          extendedProperties as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table',",
+				"     staged: true) ~> InternetSales",
+				"source(output(",
+				"          dataType as string,",
+				"          dataSubtype as string,",
+				"          dateTime as timestamp,",
+				"          category as string,",
+				"          subcategory as string,",
+				"          status as string,",
+				"          address as string,",
+				"          latitude as double,",
+				"          longitude as double,",
+				"          source as string,",
+				"          extendedProperties as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table',",
+				"     staged: true) ~> source1",
+				"InternetSales window(over(category),",
+				"     TotalLatitudeByCategory = sum(latitude)) ~> AggByCategory",
+				"source1 aggregate(groupBy(category),",
+				"     TotalLatitude = sum(latitude),",
+				"          TotalCategory = count(category)) ~> aggregate1",
+				"aggregate1 derive(AvgLatitudePerCategory = TotalLatitude/TotalCategory) ~> derivedColumn1",
+				"derivedColumn1 rank(desc(TotalLatitude, true),",
+				"     output(CategoryRank as long)) ~> rank1",
+				"rank1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          city as string,",
+				"          dataType as string,",
+				"          dataSubtype as string,",
+				"          dateTime as timestamp,",
+				"          category as string,",
+				"          subcategory as string,",
+				"          status as string,",
+				"          address as string,",
+				"          latitude as double,",
+				"          longitude as double,",
+				"          source as string,",
+				"          extendedProperties as string",
+				"     ),",
+				"     format: 'parquet',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}

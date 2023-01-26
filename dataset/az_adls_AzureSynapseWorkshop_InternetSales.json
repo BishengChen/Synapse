@@ -1,0 +1,67 @@
+{
+	"name": "az_adls_AzureSynapseWorkshop_InternetSales",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "azuresynapseanalyticsworkshopbchen-WorkspaceDefaultSqlServer",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DBName": "DedicatedP1"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "dataType",
+				"type": "varchar"
+			},
+			{
+				"name": "dataSubtype",
+				"type": "varchar"
+			},
+			{
+				"name": "dateTime",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "category",
+				"type": "varchar"
+			},
+			{
+				"name": "subcategory",
+				"type": "varchar"
+			},
+			{
+				"name": "status",
+				"type": "varchar"
+			},
+			{
+				"name": "address",
+				"type": "varchar"
+			},
+			{
+				"name": "latitude",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "longitude",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "source",
+				"type": "varchar"
+			},
+			{
+				"name": "extendedProperties",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"tableName": "dbo.SafetyData"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

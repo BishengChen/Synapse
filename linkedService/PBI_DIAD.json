@@ -1,0 +1,12 @@
+{
+	"name": "PBI_DIAD",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "PowerBIWorkspace",
+		"typeProperties": {
+			"workspaceID": "afa59120-7fbb-48e5-aa95-979795669f62",
+			"tenantID": "8b87af7d-8647-4dc7-8df4-5f69a2011bb5"
+		}
+	}
+}

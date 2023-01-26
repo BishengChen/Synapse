@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 3",
+	"properties": {
+		"content": {
+			"query": "SELECT TOP (100) [dataType]\n,[dataSubtype]\n,[dateTime]\n,[category]\n,[subcategory]\n,[status]\n,[address]\n,[latitude]\n,[longitude]\n,[source]\n,[extendedProperties]\n FROM [dbo].[InternetSales]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "DedicatedP1",
+				"poolName": "DedicatedP1"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
