@@ -88,8 +88,7 @@
 						"coreCount": 8,
 						"computeType": "General"
 					},
-					"traceLevel": "Fine",
-					"sourceStagingConcurrency": 1
+					"traceLevel": "Fine"
 				}
 			}
 		],
