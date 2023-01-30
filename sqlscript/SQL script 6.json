@@ -2,13 +2,13 @@
 	"name": "SQL script 6",
 	"properties": {
 		"content": {
-			"query": "",
+			"query": "CREATE TABLE dbo.employeesNew1\nWITH(\n        DISTRIBUTION = ROUND_ROBIN,\n        CLUSTERED COLUMNSTORE INDEX\n    )\nAS\nSELECT * FROM dbo.employees",
 			"metadata": {
 				"language": "sql"
 			},
 			"currentConnection": {
-				"databaseName": "ServerlessP1",
-				"poolName": "Built-in"
+				"databaseName": "DedicatedP1",
+				"poolName": "DedicatedP1"
 			},
 			"resultLimit": 5000
 		},
