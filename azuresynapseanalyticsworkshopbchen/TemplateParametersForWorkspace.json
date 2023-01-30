@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"workspaceName": {
+			"value": "azuresynapseanalyticsworkshopbchen"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureSynapseAnalytics1_connectionString": {
+			"value": ""
+		},
+		"azuresynapseanalyticsworkshopbchen-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:azuresynapseanalyticsworkshopbchen.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"azuresynapseanalyticsworkshopbchen-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://azuresynapseanalytic.dfs.core.windows.net"
+		},
+		"bing-covid-19-data_sasUri": {
+			"value": ""
+		},
+		"city_safety_boston_sasUri": {
+			"value": ""
+		}
+	}
+}
