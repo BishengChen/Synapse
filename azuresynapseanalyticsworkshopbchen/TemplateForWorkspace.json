@@ -199,7 +199,8 @@
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
 				},
-				"annotations": []
+				"annotations": [],
+				"lastPublishTime": "2023-01-30T14:11:11Z"
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/notebooks/Notebook 2')]",
@@ -841,6 +842,26 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/SQL script 9')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "SELECT TOP (100) [id]\n,[updated]\n,[confirmed]\n,[confirmed_change]\n,[deaths]\n,[deaths_change]\n,[recovered]\n,[recovered_change]\n,[latitude]\n,[longitude]\n,[iso2]\n,[iso3]\n,[country_region]\n,[admin_region_1]\n,[iso_subdivision]\n,[admin_region_2]\n,[load_time]\n FROM [dbo].[CovidData]",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "ServerlessP1",
+						"poolName": "Built-in"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/Notebook 2')]",
 			"type": "Microsoft.Synapse/workspaces/notebooks",
 			"apiVersion": "2019-06-01-preview",
@@ -857,6 +878,7 @@
 					"executorMemory": "56g",
 					"executorCores": 8,
 					"numExecutors": 2,
+					"runAsWorkspaceSystemIdentity": false,
 					"conf": {
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
@@ -881,12 +903,14 @@
 						"endpoint": "https://azuresynapseanalyticsworkshopbchen.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/Sparkp1",
 						"auth": {
 							"type": "AAD",
-							"authResource": "https://dev.azuresynapse.net"
+							"authResource": "https://dev.azuresynapse.net",
+							"authHeader": null
 						},
 						"sparkVersion": "3.3",
 						"nodeCount": 10,
 						"cores": 8,
-						"memory": 56
+						"memory": 56,
+						"extraHeader": null
 					},
 					"sessionKeepAliveTimeout": 30
 				},
