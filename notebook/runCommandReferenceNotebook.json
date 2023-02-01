@@ -1,5 +1,5 @@
 {
-	"name": "Notebook 3",
+	"name": "runCommandReferenceNotebook",
 	"properties": {
 		"nbformat": 4,
 		"nbformat_minor": 2,
@@ -8,16 +8,16 @@
 			"type": "BigDataPoolReference"
 		},
 		"sessionProperties": {
-			"driverMemory": "28g",
-			"driverCores": 4,
-			"executorMemory": "28g",
-			"executorCores": 4,
+			"driverMemory": "56g",
+			"driverCores": 8,
+			"executorMemory": "56g",
+			"executorCores": 8,
 			"numExecutors": 2,
 			"conf": {
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-
+				"spark.autotune.trackingId": "dcd5c870-3ecf-48ee-b2a6-bb2f446ea127"
 			}
 		},
 		"metadata": {
@@ -51,9 +51,10 @@
 			{
 				"cell_type": "code",
 				"source": [
-					"%run /ParameterizeSynapsenotebook {'first_name':'Pradeep','last_name':'Cheekatla'}"
+					"name = 'Maheer'\r\n",
+					"print('Hello' + name)"
 				],
-				"execution_count": 54
+				"execution_count": 38
 			}
 		]
 	}

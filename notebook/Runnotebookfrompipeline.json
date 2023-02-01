@@ -1,5 +1,5 @@
 {
-	"name": "Notebook 3",
+	"name": "Runnotebookfrompipeline",
 	"properties": {
 		"nbformat": 4,
 		"nbformat_minor": 2,
@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-
+				"spark.autotune.trackingId": "a746de8e-6092-48e9-871a-987b284f81b2"
 			}
 		},
 		"metadata": {
@@ -50,10 +50,33 @@
 		"cells": [
 			{
 				"cell_type": "code",
+				"metadata": {
+					"tags": [
+						"parameters"
+					]
+				},
 				"source": [
-					"%run /ParameterizeSynapsenotebook {'first_name':'Pradeep','last_name':'Cheekatla'}"
+					"name = \"Maheer\""
 				],
-				"execution_count": 54
+				"execution_count": 9
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"print(name)"
+				],
+				"execution_count": 10
 			}
 		]
 	}
