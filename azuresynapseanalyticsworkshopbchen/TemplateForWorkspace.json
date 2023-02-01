@@ -208,6 +208,55 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/Pipeline 3')]",
+			"type": "Microsoft.Synapse/workspaces/pipelines",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"activities": [
+					{
+						"name": "Runnotebookfrompipeline",
+						"type": "SynapseNotebook",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebook": {
+								"referenceName": "Runnotebookfrompipeline",
+								"type": "NotebookReference"
+							},
+							"parameters": {
+								"name": {
+									"value": "Wafa",
+									"type": "string"
+								}
+							},
+							"snapshot": true,
+							"conf": {
+								"spark.dynamicAllocation.enabled": null,
+								"spark.dynamicAllocation.minExecutors": null,
+								"spark.dynamicAllocation.maxExecutors": null
+							},
+							"numExecutors": null
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/notebooks/Runnotebookfrompipeline')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/Parquet1')]",
 			"type": "Microsoft.Synapse/workspaces/datasets",
 			"apiVersion": "2019-06-01-preview",
@@ -923,7 +972,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "9ad0a4be-c564-4c73-9522-549626b6d0e1"
+						"spark.autotune.trackingId": "ad839ce8-0d61-4b94-bb9e-fa025983ffc0"
 					}
 				},
 				"metadata": {
@@ -948,8 +997,7 @@
 						"sparkVersion": "3.3",
 						"nodeCount": 10,
 						"cores": 8,
-						"memory": 56,
-						"automaticScaleJobs": false
+						"memory": 56
 					},
 					"sessionKeepAliveTimeout": 30
 				},
@@ -1065,7 +1113,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('workspaceName'), '/Notebook 3')]",
+			"name": "[concat(parameters('workspaceName'), '/PandastoreadwriteFSSPEC')]",
 			"type": "Microsoft.Synapse/workspaces/notebooks",
 			"apiVersion": "2019-06-01-preview",
 			"properties": {
@@ -1085,7 +1133,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "bc92f89a-4c0c-45d6-a659-f5b75c5669ec"
+						"spark.autotune.trackingId": "fc523139-1d9a-4e51-8fdc-d779c4577699"
 					}
 				},
 				"metadata": {
@@ -1110,8 +1158,7 @@
 						"sparkVersion": "3.3",
 						"nodeCount": 10,
 						"cores": 8,
-						"memory": 56,
-						"automaticScaleJobs": false
+						"memory": 56
 					},
 					"sessionKeepAliveTimeout": 30
 				},
@@ -1283,7 +1330,571 @@
 							"display(df)"
 						],
 						"outputs": [],
-						"execution_count": 25
+						"execution_count": 26
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/ParameterizeSynapsenotebook')]",
+			"type": "Microsoft.Synapse/workspaces/notebooks",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"nbformat": 4,
+				"nbformat_minor": 2,
+				"bigDataPool": {
+					"referenceName": "Sparkp1",
+					"type": "BigDataPoolReference"
+				},
+				"sessionProperties": {
+					"driverMemory": "28g",
+					"driverCores": 4,
+					"executorMemory": "28g",
+					"executorCores": 4,
+					"numExecutors": 2,
+					"conf": {
+						"spark.dynamicAllocation.enabled": "false",
+						"spark.dynamicAllocation.minExecutors": "2",
+						"spark.dynamicAllocation.maxExecutors": "2",
+						"spark.autotune.trackingId": "ac10bb54-0faf-4ad8-b638-6360e3f01306"
+					}
+				},
+				"metadata": {
+					"saveOutput": true,
+					"enableDebugMode": false,
+					"kernelspec": {
+						"name": "synapse_pyspark",
+						"display_name": "Synapse PySpark"
+					},
+					"language_info": {
+						"name": "python"
+					},
+					"a365ComputeOptions": {
+						"id": "/subscriptions/e7993835-b141-4530-a10b-d03d376e18a0/resourceGroups/Azure_Synapse_Workshop_LWN/providers/Microsoft.Synapse/workspaces/azuresynapseanalyticsworkshopbchen/bigDataPools/Sparkp1",
+						"name": "Sparkp1",
+						"type": "Spark",
+						"endpoint": "https://azuresynapseanalyticsworkshopbchen.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/Sparkp1",
+						"auth": {
+							"type": "AAD",
+							"authResource": "https://dev.azuresynapse.net"
+						},
+						"sparkVersion": "3.3",
+						"nodeCount": 10,
+						"cores": 8,
+						"memory": 56
+					},
+					"sessionKeepAliveTimeout": 30
+				},
+				"cells": [
+					{
+						"cell_type": "code",
+						"metadata": {
+							"tags": []
+						},
+						"source": [
+							"first_name = 'Shaik'\r\n",
+							"last_name = 'Maheer'\r\n",
+							""
+						],
+						"outputs": [],
+						"execution_count": 55
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"full_name = first_name + ' ' + last_name\r\n",
+							"print(full_name)"
+						],
+						"outputs": [],
+						"execution_count": 56
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Runnotebookfrompipeline')]",
+			"type": "Microsoft.Synapse/workspaces/notebooks",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"nbformat": 4,
+				"nbformat_minor": 2,
+				"bigDataPool": {
+					"referenceName": "Sparkp1",
+					"type": "BigDataPoolReference"
+				},
+				"sessionProperties": {
+					"driverMemory": "28g",
+					"driverCores": 4,
+					"executorMemory": "28g",
+					"executorCores": 4,
+					"numExecutors": 2,
+					"conf": {
+						"spark.dynamicAllocation.enabled": "false",
+						"spark.dynamicAllocation.minExecutors": "2",
+						"spark.dynamicAllocation.maxExecutors": "2",
+						"spark.autotune.trackingId": "b67cc2bc-11d2-45b1-9bb0-6d1cb6a3f941"
+					}
+				},
+				"metadata": {
+					"saveOutput": true,
+					"enableDebugMode": false,
+					"kernelspec": {
+						"name": "synapse_pyspark",
+						"display_name": "Synapse PySpark"
+					},
+					"language_info": {
+						"name": "python"
+					},
+					"a365ComputeOptions": {
+						"id": "/subscriptions/e7993835-b141-4530-a10b-d03d376e18a0/resourceGroups/Azure_Synapse_Workshop_LWN/providers/Microsoft.Synapse/workspaces/azuresynapseanalyticsworkshopbchen/bigDataPools/Sparkp1",
+						"name": "Sparkp1",
+						"type": "Spark",
+						"endpoint": "https://azuresynapseanalyticsworkshopbchen.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/Sparkp1",
+						"auth": {
+							"type": "AAD",
+							"authResource": "https://dev.azuresynapse.net"
+						},
+						"sparkVersion": "3.3",
+						"nodeCount": 10,
+						"cores": 8,
+						"memory": 56,
+						"automaticScaleJobs": false
+					},
+					"sessionKeepAliveTimeout": 30
+				},
+				"cells": [
+					{
+						"cell_type": "code",
+						"metadata": {
+							"tags": [
+								"parameters"
+							]
+						},
+						"source": [
+							"name = \"Maheer\""
+						],
+						"outputs": [],
+						"execution_count": 9
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"print(name)"
+						],
+						"outputs": [],
+						"execution_count": 10
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Use multiple languages')]",
+			"type": "Microsoft.Synapse/workspaces/notebooks",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"nbformat": 4,
+				"nbformat_minor": 2,
+				"bigDataPool": {
+					"referenceName": "Sparkp1",
+					"type": "BigDataPoolReference"
+				},
+				"sessionProperties": {
+					"driverMemory": "56g",
+					"driverCores": 8,
+					"executorMemory": "56g",
+					"executorCores": 8,
+					"numExecutors": 2,
+					"conf": {
+						"spark.dynamicAllocation.enabled": "false",
+						"spark.dynamicAllocation.minExecutors": "2",
+						"spark.dynamicAllocation.maxExecutors": "2",
+						"spark.autotune.trackingId": "0dd84d64-5e91-404a-9f0c-d84d2838ddc7"
+					}
+				},
+				"metadata": {
+					"saveOutput": true,
+					"enableDebugMode": false,
+					"kernelspec": {
+						"name": "synapse_pyspark",
+						"display_name": "Synapse PySpark"
+					},
+					"language_info": {
+						"name": "python"
+					},
+					"a365ComputeOptions": {
+						"id": "/subscriptions/e7993835-b141-4530-a10b-d03d376e18a0/resourceGroups/Azure_Synapse_Workshop_LWN/providers/Microsoft.Synapse/workspaces/azuresynapseanalyticsworkshopbchen/bigDataPools/Sparkp1",
+						"name": "Sparkp1",
+						"type": "Spark",
+						"endpoint": "https://azuresynapseanalyticsworkshopbchen.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/Sparkp1",
+						"auth": {
+							"type": "AAD",
+							"authResource": "https://dev.azuresynapse.net"
+						},
+						"sparkVersion": "3.3",
+						"nodeCount": 10,
+						"cores": 8,
+						"memory": 56
+					},
+					"sessionKeepAliveTimeout": 30
+				},
+				"cells": [
+					{
+						"cell_type": "code",
+						"metadata": {
+							"microsoft": {
+								"language": "scala"
+							}
+						},
+						"source": [
+							"%%spark\r\n",
+							"val i = \"abcd\"\r\n",
+							"println(i)"
+						],
+						"outputs": [],
+						"execution_count": 1
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"microsoft": {
+								"language": "python"
+							}
+						},
+						"source": [
+							"%%pyspark = \"abcd\"\r\n",
+							"i = \"abcd\"\r\n",
+							"print(i)"
+						],
+						"outputs": [],
+						"execution_count": 3
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"microsoft": {
+								"language": "sparksql"
+							},
+							"collapsed": false
+						},
+						"source": [
+							"%%sql\r\n",
+							"select '1' as col1"
+						],
+						"outputs": [],
+						"execution_count": 4
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"microsoft": {
+								"language": "csharp"
+							}
+						},
+						"source": [
+							"%%csharp\r\n",
+							"string i = \"abcd\";\r\n",
+							"Console.WriteLine(i)"
+						],
+						"outputs": [],
+						"execution_count": 6
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Use temp tables to reference data across languages')]",
+			"type": "Microsoft.Synapse/workspaces/notebooks",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"nbformat": 4,
+				"nbformat_minor": 2,
+				"bigDataPool": {
+					"referenceName": "Sparkp1",
+					"type": "BigDataPoolReference"
+				},
+				"sessionProperties": {
+					"driverMemory": "56g",
+					"driverCores": 8,
+					"executorMemory": "56g",
+					"executorCores": 8,
+					"numExecutors": 2,
+					"conf": {
+						"spark.dynamicAllocation.enabled": "false",
+						"spark.dynamicAllocation.minExecutors": "2",
+						"spark.dynamicAllocation.maxExecutors": "2",
+						"spark.autotune.trackingId": "62f5ecb1-e6cb-4f78-8edb-47ea9208745b"
+					}
+				},
+				"metadata": {
+					"saveOutput": true,
+					"enableDebugMode": false,
+					"kernelspec": {
+						"name": "synapse_pyspark",
+						"display_name": "Synapse PySpark"
+					},
+					"language_info": {
+						"name": "python"
+					},
+					"a365ComputeOptions": {
+						"id": "/subscriptions/e7993835-b141-4530-a10b-d03d376e18a0/resourceGroups/Azure_Synapse_Workshop_LWN/providers/Microsoft.Synapse/workspaces/azuresynapseanalyticsworkshopbchen/bigDataPools/Sparkp1",
+						"name": "Sparkp1",
+						"type": "Spark",
+						"endpoint": "https://azuresynapseanalyticsworkshopbchen.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/Sparkp1",
+						"auth": {
+							"type": "AAD",
+							"authResource": "https://dev.azuresynapse.net"
+						},
+						"sparkVersion": "3.3",
+						"nodeCount": 10,
+						"cores": 8,
+						"memory": 56
+					},
+					"sessionKeepAliveTimeout": 30
+				},
+				"cells": [
+					{
+						"cell_type": "code",
+						"metadata": {
+							"microsoft": {
+								"language": "scala"
+							}
+						},
+						"source": [
+							"%%spark\r\n",
+							"val scala_df = spark.read.sqlanalytics(\"DedicatedP1.dbo.employees\")\r\n",
+							"scala_df.createOrReplaceTempView(\"employeeTempTable\")"
+						],
+						"outputs": [],
+						"execution_count": 5
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"microsoft": {
+								"language": "python"
+							},
+							"collapsed": false
+						},
+						"source": [
+							"%%pyspark\r\n",
+							"python_df = spark.sql(\"select * from employeeTempTable\")\r\n",
+							"display(python_df)"
+						],
+						"outputs": [],
+						"execution_count": 7
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"microsoft": {
+								"language": "sparksql"
+							},
+							"collapsed": false
+						},
+						"source": [
+							"%%sql\r\n",
+							"select * from employeeTempTable"
+						],
+						"outputs": [],
+						"execution_count": 8
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/runCommand')]",
+			"type": "Microsoft.Synapse/workspaces/notebooks",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"nbformat": 4,
+				"nbformat_minor": 2,
+				"bigDataPool": {
+					"referenceName": "Sparkp1",
+					"type": "BigDataPoolReference"
+				},
+				"sessionProperties": {
+					"driverMemory": "28g",
+					"driverCores": 4,
+					"executorMemory": "28g",
+					"executorCores": 4,
+					"numExecutors": 2,
+					"conf": {
+						"spark.dynamicAllocation.enabled": "false",
+						"spark.dynamicAllocation.minExecutors": "2",
+						"spark.dynamicAllocation.maxExecutors": "2",
+						"spark.autotune.trackingId": "696819d2-d0e3-427e-aafe-da02b85b6d0f"
+					}
+				},
+				"metadata": {
+					"saveOutput": true,
+					"enableDebugMode": false,
+					"kernelspec": {
+						"name": "synapse_pyspark",
+						"display_name": "Synapse PySpark"
+					},
+					"language_info": {
+						"name": "python"
+					},
+					"a365ComputeOptions": {
+						"id": "/subscriptions/e7993835-b141-4530-a10b-d03d376e18a0/resourceGroups/Azure_Synapse_Workshop_LWN/providers/Microsoft.Synapse/workspaces/azuresynapseanalyticsworkshopbchen/bigDataPools/Sparkp1",
+						"name": "Sparkp1",
+						"type": "Spark",
+						"endpoint": "https://azuresynapseanalyticsworkshopbchen.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/Sparkp1",
+						"auth": {
+							"type": "AAD",
+							"authResource": "https://dev.azuresynapse.net"
+						},
+						"sparkVersion": "3.3",
+						"nodeCount": 10,
+						"cores": 8,
+						"memory": 56
+					},
+					"sessionKeepAliveTimeout": 30
+				},
+				"cells": [
+					{
+						"cell_type": "code",
+						"source": [
+							"%run /runCommandReferenceNotebook"
+						],
+						"outputs": [],
+						"execution_count": 48
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/runCommandReferenceNotebook')]",
+			"type": "Microsoft.Synapse/workspaces/notebooks",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"nbformat": 4,
+				"nbformat_minor": 2,
+				"bigDataPool": {
+					"referenceName": "Sparkp1",
+					"type": "BigDataPoolReference"
+				},
+				"sessionProperties": {
+					"driverMemory": "56g",
+					"driverCores": 8,
+					"executorMemory": "56g",
+					"executorCores": 8,
+					"numExecutors": 2,
+					"conf": {
+						"spark.dynamicAllocation.enabled": "false",
+						"spark.dynamicAllocation.minExecutors": "2",
+						"spark.dynamicAllocation.maxExecutors": "2",
+						"spark.autotune.trackingId": "dcd5c870-3ecf-48ee-b2a6-bb2f446ea127"
+					}
+				},
+				"metadata": {
+					"saveOutput": true,
+					"enableDebugMode": false,
+					"kernelspec": {
+						"name": "synapse_pyspark",
+						"display_name": "Synapse PySpark"
+					},
+					"language_info": {
+						"name": "python"
+					},
+					"a365ComputeOptions": {
+						"id": "/subscriptions/e7993835-b141-4530-a10b-d03d376e18a0/resourceGroups/Azure_Synapse_Workshop_LWN/providers/Microsoft.Synapse/workspaces/azuresynapseanalyticsworkshopbchen/bigDataPools/Sparkp1",
+						"name": "Sparkp1",
+						"type": "Spark",
+						"endpoint": "https://azuresynapseanalyticsworkshopbchen.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/Sparkp1",
+						"auth": {
+							"type": "AAD",
+							"authResource": "https://dev.azuresynapse.net"
+						},
+						"sparkVersion": "3.3",
+						"nodeCount": 10,
+						"cores": 8,
+						"memory": 56
+					},
+					"sessionKeepAliveTimeout": 30
+				},
+				"cells": [
+					{
+						"cell_type": "code",
+						"source": [
+							"name = 'Maheer'\r\n",
+							"print('Hello' + name)"
+						],
+						"outputs": [],
+						"execution_count": 38
 					}
 				]
 			},
