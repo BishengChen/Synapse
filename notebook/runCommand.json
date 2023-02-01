@@ -1,5 +1,5 @@
 {
-	"name": "Notebook 3",
+	"name": "runCommand",
 	"properties": {
 		"nbformat": 4,
 		"nbformat_minor": 2,
@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "33d431e6-8380-4536-99f6-b1d8a01aa269"
+				"spark.autotune.trackingId": "571116ff-0143-4921-a2e9-4053fcb98629"
 			}
 		},
 		"metadata": {
@@ -53,7 +53,7 @@
 				"source": [
 					"%run /runCommandReferenceNotebook"
 				],
-				"execution_count": 31
+				"execution_count": 47
 			}
 		]
 	}
