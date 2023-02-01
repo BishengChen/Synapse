@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "187a8f84-57c3-4927-9836-fc7bd383bde0"
+				"spark.autotune.trackingId": "b2c065fe-83d4-417b-8265-58c312f851cf"
 			}
 		},
 		"metadata": {
@@ -117,6 +117,38 @@
 					""
 				],
 				"execution_count": 18
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"import fsspec\r\n",
+					"import pandas\r\n",
+					"\r\n",
+					"adls_account_name = 'azuresynapseanalytic'\r\n",
+					"sas_key = TokenLibrary.getConnectionString('AzureBlobStorage1')\r\n",
+					"\r\n",
+					"data = pandas.DataFrame({'Order ID':[1,2], 'Product': ['iphone13bchen','huawei1bchen']})\r\n",
+					"\r\n",
+					"fsspec_object = fsspec.open('abfss://synapse/Sales_January_2019_Test_CSV2.csv', account_name = adls_account_name, sas_token = sas_key, mode = 'wt')\r\n",
+					"\r\n",
+					"with fsspec_object.open() as f:\r\n",
+					"    data.to_csv(f)\r\n",
+					"\r\n",
+					"\r\n",
+					""
+				],
+				"execution_count": 19
 			}
 		]
 	}
