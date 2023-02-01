@@ -702,6 +702,26 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/SQL script 10')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseDelimitedTextFormat') \n\tCREATE EXTERNAL FILE FORMAT [SynapseDelimitedTextFormat] \n\tWITH ( FORMAT_TYPE = DELIMITEDTEXT ,\n\t       FORMAT_OPTIONS (\n\t\t\t FIELD_TERMINATOR = ',',\n\t\t\t USE_TYPE_DEFAULT = FALSE\n\t\t\t))\nGO\n\nIF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'synapse_azuresynapseanalytic_dfs_core_windows_net') \n\tCREATE EXTERNAL DATA SOURCE [synapse_azuresynapseanalytic_dfs_core_windows_net] \n\tWITH (\n\t\tLOCATION = 'abfss://synapse@azuresynapseanalytic.dfs.core.windows.net' \n\t)\nGO\n\nCREATE EXTERNAL TABLE dbo.sales (\n\t[C1] nvarchar(4000),\n\t[C2] nvarchar(4000),\n\t[C3] nvarchar(4000),\n\t[C4] nvarchar(4000),\n\t[C5] nvarchar(4000),\n\t[C6] nvarchar(4000)\n\t)\n\tWITH (\n\tLOCATION = 'Sales_January_2019_Test_CSV.csv',\n\tDATA_SOURCE = [synapse_azuresynapseanalytic_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseDelimitedTextFormat]\n\t)\nGO\n\n\nSELECT TOP 100 * FROM dbo.sales\nGO",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "ServerlessP1",
+						"poolName": "Built-in"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/SQL script 2')]",
 			"type": "Microsoft.Synapse/workspaces/sqlscripts",
 			"apiVersion": "2019-06-01-preview",
@@ -862,6 +882,26 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/SQL_logins')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "select * from sys.sql_logins",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"databaseName": "DedicatedP1",
+						"poolName": "DedicatedP1"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/Notebook 2')]",
 			"type": "Microsoft.Synapse/workspaces/notebooks",
 			"apiVersion": "2019-06-01-preview",
@@ -883,7 +923,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "dbb9f372-eae9-4240-bf4f-49778d8f0c87"
+						"spark.autotune.trackingId": "9ad0a4be-c564-4c73-9522-549626b6d0e1"
 					}
 				},
 				"metadata": {
@@ -903,14 +943,13 @@
 						"endpoint": "https://azuresynapseanalyticsworkshopbchen.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/Sparkp1",
 						"auth": {
 							"type": "AAD",
-							"authResource": "https://dev.azuresynapse.net",
-							"authHeader": null
+							"authResource": "https://dev.azuresynapse.net"
 						},
 						"sparkVersion": "3.3",
 						"nodeCount": 10,
 						"cores": 8,
 						"memory": 56,
-						"extraHeader": null
+						"automaticScaleJobs": false
 					},
 					"sessionKeepAliveTimeout": 30
 				},
@@ -930,6 +969,321 @@
 						],
 						"outputs": [],
 						"execution_count": 1
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": true
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"new_rows = [('Member','Male', 1000 ), ('Wafe', 'Male', 2000)]\r\n",
+							"demo_df = spark.createDataFrame(new_rows,['Name', 'Gender', 'Salary'])\r\n",
+							"demo_df.show()\r\n",
+							"demo_df.write.csv('abfss://synapse@azuresynapseanalytic.dfs.core.windows.net/Notebook/',mode='overwrite')"
+						],
+						"outputs": [],
+						"execution_count": 13
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"demo_df.createOrReplaceTempView(\"demoTempTable\")"
+						],
+						"outputs": [],
+						"execution_count": 2
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"microsoft": {
+								"language": "sparksql"
+							},
+							"collapsed": false
+						},
+						"source": [
+							"%%sql\r\n",
+							"Show tables\r\n",
+							""
+						],
+						"outputs": [],
+						"execution_count": 7
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"microsoft": {
+								"language": "sparksql"
+							},
+							"collapsed": false
+						},
+						"source": [
+							"%%sql\r\n",
+							"select * from demoTempTable"
+						],
+						"outputs": [],
+						"execution_count": 6
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Notebook 3')]",
+			"type": "Microsoft.Synapse/workspaces/notebooks",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"nbformat": 4,
+				"nbformat_minor": 2,
+				"bigDataPool": {
+					"referenceName": "Sparkp1",
+					"type": "BigDataPoolReference"
+				},
+				"sessionProperties": {
+					"driverMemory": "56g",
+					"driverCores": 8,
+					"executorMemory": "56g",
+					"executorCores": 8,
+					"numExecutors": 2,
+					"conf": {
+						"spark.dynamicAllocation.enabled": "false",
+						"spark.dynamicAllocation.minExecutors": "2",
+						"spark.dynamicAllocation.maxExecutors": "2",
+						"spark.autotune.trackingId": "bc92f89a-4c0c-45d6-a659-f5b75c5669ec"
+					}
+				},
+				"metadata": {
+					"saveOutput": true,
+					"enableDebugMode": false,
+					"kernelspec": {
+						"name": "synapse_pyspark",
+						"display_name": "Synapse PySpark"
+					},
+					"language_info": {
+						"name": "python"
+					},
+					"a365ComputeOptions": {
+						"id": "/subscriptions/e7993835-b141-4530-a10b-d03d376e18a0/resourceGroups/Azure_Synapse_Workshop_LWN/providers/Microsoft.Synapse/workspaces/azuresynapseanalyticsworkshopbchen/bigDataPools/Sparkp1",
+						"name": "Sparkp1",
+						"type": "Spark",
+						"endpoint": "https://azuresynapseanalyticsworkshopbchen.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/Sparkp1",
+						"auth": {
+							"type": "AAD",
+							"authResource": "https://dev.azuresynapse.net"
+						},
+						"sparkVersion": "3.3",
+						"nodeCount": 10,
+						"cores": 8,
+						"memory": 56,
+						"automaticScaleJobs": false
+					},
+					"sessionKeepAliveTimeout": 30
+				},
+				"cells": [
+					{
+						"cell_type": "code",
+						"metadata": {
+							"collapsed": false
+						},
+						"source": [
+							"import pandas\r\n",
+							"\r\n",
+							"df = pandas.read_csv('abfss://synapse@azuresynapseanalytic.dfs.core.windows.net/Sales_January_2019_Test_CSV.csv',\r\n",
+							"storage_options = {'account_key':'C85ptmYGz9wmNMNaqtSPjklqqo939EJ8tT8e+mPwdxEPfFxnsSlwXoymA4IA9Cc96jJ6R1kXpCMO+AStgkMv0w=='})\r\n",
+							"\r\n",
+							"display(df)"
+						],
+						"outputs": [],
+						"execution_count": 2
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"collapsed": false
+						},
+						"source": [
+							"import pandas\r\n",
+							"df1 = pandas.DataFrame({'Order ID':[1,2], 'Product': ['iphone13bchen','huawei1bchen']})\r\n",
+							"df1.to_csv('abfss://synapse@azuresynapseanalytic.dfs.core.windows.net/Sales_January_2019_Test_CSV1.csv',\r\n",
+							"storage_options = {'account_key':'C85ptmYGz9wmNMNaqtSPjklqqo939EJ8tT8e+mPwdxEPfFxnsSlwXoymA4IA9Cc96jJ6R1kXpCMO+AStgkMv0w=='})\r\n",
+							"display(df1)"
+						],
+						"outputs": [],
+						"execution_count": 7
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"collapsed": false
+						},
+						"source": [
+							"import fsspec\r\n",
+							"import pandas\r\n",
+							"\r\n",
+							"adls_account_name = 'azuresynapseanalytic'\r\n",
+							"sas_key = TokenLibrary.getConnectionString('AzureBlobStorage1')\r\n",
+							"\r\n",
+							"fsspec_object = fsspec.open('abfss://synapse/Sales_January_2019_Test_CSV.csv', account_name = adls_account_name, sas_token = sas_key)\r\n",
+							"\r\n",
+							"with fsspec_object.open() as f:\r\n",
+							"    df2 = pandas.read_csv(f)\r\n",
+							"\r\n",
+							"display(df2)\r\n",
+							"\r\n",
+							""
+						],
+						"outputs": [],
+						"execution_count": 18
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"import fsspec\r\n",
+							"import pandas\r\n",
+							"\r\n",
+							"adls_account_name = 'azuresynapseanalytic'\r\n",
+							"sas_key = TokenLibrary.getConnectionString('AzureBlobStorage1')\r\n",
+							"\r\n",
+							"data = pandas.DataFrame({'Order ID':[1,2], 'Product': ['iphone13bchen','huawei1bchen']})\r\n",
+							"\r\n",
+							"fsspec_object = fsspec.open('abfss://synapse/Sales_January_2019_Test_CSV2.csv', account_name = adls_account_name, sas_token = sas_key, mode = 'wt')\r\n",
+							"\r\n",
+							"with fsspec_object.open() as f:\r\n",
+							"    data.to_csv(f)\r\n",
+							"\r\n",
+							"\r\n",
+							""
+						],
+						"outputs": [],
+						"execution_count": 19
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							}
+						},
+						"source": [
+							"import fsspec\r\n",
+							"import pandas\r\n",
+							"\r\n",
+							"adls_account_name = 'azuresynapseanalytic'\r\n",
+							"adls_account_key = 'C85ptmYGz9wmNMNaqtSPjklqqo939EJ8tT8e+mPwdxEPfFxnsSlwXoymA4IA9Cc96jJ6R1kXpCMO+AStgkMv0w=='\r\n",
+							"\r\n",
+							"data = pandas.DataFrame({'Order ID':[1,2], 'Product': ['iphone13bchen','huawei1bchen']})\r\n",
+							"\r\n",
+							"fsspec_object = fsspec.open('abfss://synapse/Sales_January_2019_Test_CSV3.csv', account_name = adls_account_name, account_key = adls_account_key, mode = 'wt')\r\n",
+							"\r\n",
+							"with fsspec_object.open() as f:\r\n",
+							"    data.to_csv(f)"
+						],
+						"outputs": [],
+						"execution_count": 20
+					},
+					{
+						"cell_type": "code",
+						"metadata": {
+							"jupyter": {
+								"source_hidden": false,
+								"outputs_hidden": false
+							},
+							"nteract": {
+								"transient": {
+									"deleting": false
+								}
+							},
+							"collapsed": false
+						},
+						"source": [
+							"import fsspec\r\n",
+							"import pandas\r\n",
+							"\r\n",
+							"adls_account_name = 'azuresynapseanalytic'\r\n",
+							"adls_account_key = 'C85ptmYGz9wmNMNaqtSPjklqqo939EJ8tT8e+mPwdxEPfFxnsSlwXoymA4IA9Cc96jJ6R1kXpCMO+AStgkMv0w=='\r\n",
+							"\r\n",
+							"\r\n",
+							"\r\n",
+							"fsspec_object = fsspec.open('abfss://synapse/Sales_January_2019_Test_CSV2.csv', account_name = adls_account_name, account_key = adls_account_key)\r\n",
+							"\r\n",
+							"with fsspec_object.open() as f:\r\n",
+							"    df = pandas.read_csv(f)\r\n",
+							"\r\n",
+							"display(df)"
+						],
+						"outputs": [],
+						"execution_count": 25
 					}
 				]
 			},
