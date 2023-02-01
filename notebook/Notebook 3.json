@@ -1,5 +1,5 @@
 {
-	"name": "runCommand",
+	"name": "Notebook 3",
 	"properties": {
 		"nbformat": 4,
 		"nbformat_minor": 2,
@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "696819d2-d0e3-427e-aafe-da02b85b6d0f"
+				"spark.autotune.trackingId": "04d5d986-6e78-4e7f-8ba0-52272aa94dd2"
 			}
 		},
 		"metadata": {
@@ -51,9 +51,9 @@
 			{
 				"cell_type": "code",
 				"source": [
-					"%run /runCommandReferenceNotebook"
+					"%run /ParameterizeSynapsenotebook {'first_name':'Pradeep','last_name':'Cheekatla'}"
 				],
-				"execution_count": 48
+				"execution_count": 54
 			}
 		]
 	}

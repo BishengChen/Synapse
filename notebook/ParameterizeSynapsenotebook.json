@@ -1,5 +1,5 @@
 {
-	"name": "runCommand",
+	"name": "ParameterizeSynapsenotebook",
 	"properties": {
 		"nbformat": 4,
 		"nbformat_minor": 2,
@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "696819d2-d0e3-427e-aafe-da02b85b6d0f"
+				"spark.autotune.trackingId": "ac10bb54-0faf-4ad8-b638-6360e3f01306"
 			}
 		},
 		"metadata": {
@@ -50,10 +50,34 @@
 		"cells": [
 			{
 				"cell_type": "code",
+				"metadata": {
+					"tags": []
+				},
 				"source": [
-					"%run /runCommandReferenceNotebook"
+					"first_name = 'Shaik'\r\n",
+					"last_name = 'Maheer'\r\n",
+					""
 				],
-				"execution_count": 48
+				"execution_count": 55
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"full_name = first_name + ' ' + last_name\r\n",
+					"print(full_name)"
+				],
+				"execution_count": 56
 			}
 		]
 	}
