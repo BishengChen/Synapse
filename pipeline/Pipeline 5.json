@@ -1,9 +1,9 @@
 {
-	"name": "Pipeline 4",
+	"name": "Pipeline 5",
 	"properties": {
 		"activities": [
 			{
-				"name": "Notebook 3",
+				"name": "MSSparkUtilsRuntimeUtils",
 				"type": "SynapseNotebook",
 				"dependsOn": [],
 				"policy": {
@@ -16,14 +16,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"notebook": {
-						"referenceName": "ConfigureaccessADLS",
+						"referenceName": "MSSparkUtilsRuntimeUtils",
 						"type": "NotebookReference"
 					},
-					"snapshot": true,
-					"sparkPool": {
-						"referenceName": "Sparkp1",
-						"type": "BigDataPoolReference"
-					}
+					"snapshot": true
 				}
 			}
 		],

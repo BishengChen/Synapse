@@ -1,5 +1,5 @@
 {
-	"name": "runfunctionofnotebookmoduleReference",
+	"name": "ConfigureaccessADLS",
 	"properties": {
 		"nbformat": 4,
 		"nbformat_minor": 2,
@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "e640e064-dfe4-4148-bc40-f18a03564225"
+				"spark.autotune.trackingId": "23b22584-a1c2-481b-971d-48b8d8e62b1a"
 			}
 		},
 		"metadata": {
@@ -50,11 +50,14 @@
 		"cells": [
 			{
 				"cell_type": "code",
+				"metadata": {
+					"collapsed": false
+				},
 				"source": [
-					"from notebookutils import mssparkutils\r\n",
-					"mssparkutils.notebook.run('/runfunctionofnotebookmodule',90,{'firstName':'Pradeep','lastName':'Cheekatla'})"
+					"df = spark.read.load('abfss://synapse@azuresynapseanalytic.dfs.core.windows.net/Sales_January_2019_Test_CSV1.csv',format='csv', header = True)\r\n",
+					"display(df)"
 				],
-				"execution_count": null
+				"execution_count": 53
 			}
 		]
 	}

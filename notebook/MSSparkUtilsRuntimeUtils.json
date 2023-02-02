@@ -1,5 +1,5 @@
 {
-	"name": "runfunctionofnotebookmoduleReference",
+	"name": "MSSparkUtilsRuntimeUtils",
 	"properties": {
 		"nbformat": 4,
 		"nbformat_minor": 2,
@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "e640e064-dfe4-4148-bc40-f18a03564225"
+				"spark.autotune.trackingId": "2c44c4d5-6332-41c8-be22-2b9989fa03fc"
 			}
 		},
 		"metadata": {
@@ -52,9 +52,9 @@
 				"cell_type": "code",
 				"source": [
 					"from notebookutils import mssparkutils\r\n",
-					"mssparkutils.notebook.run('/runfunctionofnotebookmodule',90,{'firstName':'Pradeep','lastName':'Cheekatla'})"
+					"mssparkutils.runtime.context"
 				],
-				"execution_count": null
+				"execution_count": 54
 			}
 		]
 	}
