@@ -1,0 +1,32 @@
+{
+	"name": "Pipeline 4",
+	"properties": {
+		"activities": [
+			{
+				"name": "Notebook 3",
+				"type": "SynapseNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebook": {
+						"referenceName": "ConfigureaccessADLS",
+						"type": "NotebookReference"
+					},
+					"snapshot": true,
+					"sparkPool": {
+						"referenceName": "Sparkp1",
+						"type": "BigDataPoolReference"
+					}
+				}
+			}
+		],
+		"annotations": []
+	}
+}
