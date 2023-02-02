@@ -1,0 +1,82 @@
+{
+	"name": "IPython Widgets",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "Sparkp1",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "88ed9c6f-3ebb-4c72-ba6c-bf441e310916"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/e7993835-b141-4530-a10b-d03d376e18a0/resourceGroups/Azure_Synapse_Workshop_LWN/providers/Microsoft.Synapse/workspaces/azuresynapseanalyticsworkshopbchen/bigDataPools/Sparkp1",
+				"name": "Sparkp1",
+				"type": "Spark",
+				"endpoint": "https://azuresynapseanalyticsworkshopbchen.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/Sparkp1",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "3.3",
+				"nodeCount": 10,
+				"cores": 8,
+				"memory": 56,
+				"automaticScaleJobs": false
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"from ipywidgets import widgets\r\n",
+					"\r\n",
+					"lbl1 = widgets.Label(value='First Name')\r\n",
+					"display(lbl1)\r\n",
+					"txt1 = widgets.Text()\r\n",
+					"display(txt1)\r\n",
+					"\r\n",
+					"lbl2 = widgets.Label(value='Last Name')\r\n",
+					"display(lbl2)\r\n",
+					"txt2 = widgets.Text()\r\n",
+					"display(txt2)\r\n",
+					"\r\n",
+					"btn = widgets.Button(description = 'Get Full Name')\r\n",
+					"display(btn)\r\n",
+					"\r\n",
+					"lblFullName = widgets.Label()\r\n",
+					"display(lblFullName)\r\n",
+					"\r\n",
+					"def getFullName(b):\r\n",
+					"    lblFullName.value = 'Full name is: ' + txt1.value + ' ' + txt2.value\r\n",
+					"\r\n",
+					"\r\n",
+					"btn.on_click(getFullName)"
+				],
+				"execution_count": 18
+			}
+		]
+	}
+}
