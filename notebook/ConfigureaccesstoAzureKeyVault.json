@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "0a250bc6-7ff9-4208-a2c8-1435204253d6"
+				"spark.autotune.trackingId": "aedc42df-a778-4488-9de1-1e0ddd5aff1f"
 			}
 		},
 		"metadata": {
@@ -54,7 +54,7 @@
 					"from notebookutils import mssparkutils\r\n",
 					"mssparkutils.credentials.getSecret('bchen1','mySecret')"
 				],
-				"execution_count": 57
+				"execution_count": 58
 			}
 		]
 	}
