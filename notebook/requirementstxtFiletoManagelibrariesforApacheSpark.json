@@ -1,5 +1,5 @@
 {
-	"name": "ConfigureaccesstoAzureKeyVault",
+	"name": "requirementstxtFiletoManagelibrariesforApacheSpark",
 	"properties": {
 		"nbformat": 4,
 		"nbformat_minor": 2,
@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "aedc42df-a778-4488-9de1-1e0ddd5aff1f"
+				"spark.autotune.trackingId": "adfaff98-f33a-4aea-aee4-080e77166b85"
 			}
 		},
 		"metadata": {
@@ -51,10 +51,9 @@
 			{
 				"cell_type": "code",
 				"source": [
-					"from notebookutils import mssparkutils\r\n",
-					"mssparkutils.credentials.getSecret('bchen1','mySecret')"
+					"pip list"
 				],
-				"execution_count": 58
+				"execution_count": 2
 			}
 		]
 	}

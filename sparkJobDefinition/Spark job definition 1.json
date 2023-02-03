@@ -1,0 +1,36 @@
+{
+	"name": "Spark job definition 1",
+	"properties": {
+		"targetBigDataPool": {
+			"referenceName": "Sparkp1",
+			"type": "BigDataPoolReference"
+		},
+		"requiredSparkVersion": "3.3",
+		"language": "python",
+		"scanFolder": false,
+		"jobProperties": {
+			"name": "Spark job definition 1",
+			"file": "abfss://synapse@azuresynapseanalytic.dfs.core.windows.net/sparkjob/sampleCode.py",
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "1",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "dedaf895-60b8-4866-b943-1c286fc1f47a"
+			},
+			"args": [
+				"abfss://synapse@azuresynapseanalytic.dfs.core.windows.net/data/maheer1/Sales_January_2019_Test_CSV.csv",
+				"abfss://synapse@azuresynapseanalytic.dfs.core.windows.net/result"
+			],
+			"jars": [],
+			"pyFiles": [
+				""
+			],
+			"files": [],
+			"driverMemory": "56g",
+			"driverCores": 8,
+			"executorMemory": "56g",
+			"executorCores": 8,
+			"numExecutors": 2
+		}
+	}
+}
