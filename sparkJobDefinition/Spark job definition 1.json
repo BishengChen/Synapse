@@ -10,12 +10,12 @@
 		"scanFolder": false,
 		"jobProperties": {
 			"name": "Spark job definition 1",
-			"file": "abfss://synapse@azuresynapseanalytic.dfs.core.windows.net/sparkjob/sampleCode.py",
+			"file": "abfss://synapse@azuresynapseanalytic.dfs.core.windows.net/synapse/workspaces/azuresynapseanalyticsworkshopbchen/batchjobs/Spark%20job%20definition%201/sampleCode.py",
 			"conf": {
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "b89f20a4-611f-450e-948d-35900636889f"
+				"spark.autotune.trackingId": "33201604-24d9-4991-a6c9-0db9d00497f1"
 			},
 			"args": [
 				"abfss://synapse@azuresynapseanalytic.dfs.core.windows.net/Sales_January_2019_Test_CSV.csv",
