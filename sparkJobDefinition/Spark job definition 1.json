@@ -15,11 +15,11 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "34018465-b607-46c4-8060-c3aa3b7021f7"
+				"spark.autotune.trackingId": "baf1f525-a63f-4ccb-9272-0fbec11f4c36"
 			},
 			"args": [
 				"abfss://synapse@azuresynapseanalytic.dfs.core.windows.net/Sales_January_2019_Test_CSV.csv",
-				"abfss://synapse@azuresynapseanalytic.dfs.core.windows.net/output/"
+				"abfss://synapse@azuresynapseanalytic.dfs.core.windows.net/result"
 			],
 			"jars": [],
 			"pyFiles": [
