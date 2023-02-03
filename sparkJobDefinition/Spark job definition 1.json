@@ -15,7 +15,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "baf1f525-a63f-4ccb-9272-0fbec11f4c36"
+				"spark.autotune.trackingId": "7af2c2d7-c98e-46a0-bead-bcf5b7dc8430"
 			},
 			"args": [
 				"abfss://synapse@azuresynapseanalytic.dfs.core.windows.net/Sales_January_2019_Test_CSV.csv",
